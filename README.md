@@ -5,7 +5,7 @@ Collection of my ESPHome Yaml files
 
 ### garage-door-v1
  This program is a prelude to the garage door opener.
- A button is on D6. When pressed, the relayon D5 closes
+ A button is on D6. When pressed, the relay on D5 closes
  for 500ms.
 
 ### wemos-test.yaml
