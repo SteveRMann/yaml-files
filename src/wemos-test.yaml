@@ -1,0 +1,58 @@
+# wemos_test
+# In this file:
+#  multiple networks using DHCP
+
+esphome:
+  name: wemos_test
+  platform: ESP8266
+  board: d1_mini
+
+
+# Multiple networks with DHCP
+wifi:
+  networks:
+  - ssid: Kaywinnet
+    password: !secret wifi_password
+  - ssid: Serenity
+    password: !secret serenity_password
+  - ssid: Naboo
+    password: !secret naboo_password
+
+
+# Enable logging
+logger:
+  level: VERBOSE     # default is DEBUG
+
+
+# Enable Home Assistant API
+api:
+
+
+# Enable Over the Air updates
+ota:
+  safe_mode: True
+
+
+#Blink the LED_BuiltIn if there's a problem, on otherwise.    
+status_led:
+  pin:
+    number: D4
+    
+    
+text_sensor:
+  # Get the WiFi details
+  - platform: wifi_info
+    ip_address:
+      name: WemosPro IP Address
+    ssid:
+      name: WemosPro SSID
+    mac_address:
+      name: WemosPro Mac Address
+  
+
+sensor:
+  # WiFi Signal sensor.
+  - platform: wifi_signal
+    name: WemosPro WiFi Signal
+    update_interval: 60s
+
