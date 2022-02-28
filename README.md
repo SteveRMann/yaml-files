@@ -22,6 +22,10 @@ Basic setup for a Sonoff Mini module
 `Sonoff Basic`
 Basic setup for a Sonoff Basic with a switch on GPIO14
 
+### sonoff-sv.yaml
+`Sonoff-SV`
+Basic setup for the Sonoff-SV module
+
 ### temperature-1.yaml
 `Wemos D1 Mini`
  This YAML file contains code for the following:
