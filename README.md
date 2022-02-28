@@ -9,6 +9,11 @@ Collection of my ESPHome Yaml files
  A button is on D6. When pressed, the relay on D5 closes
  for 500ms.
  
+### pir-one.yaml
+`Wemos D1 Mini`
+Demo of a PIR sensor on GPIO14 (D5) on a Wemos D1 Mini.
+Also has a Dallas DS18B20 Temperature sensor and uptime sensor.
+
 ### sonoff-mini.yaml
 `sonoff mini`
 Basic setup for a Sonoff Mini module
