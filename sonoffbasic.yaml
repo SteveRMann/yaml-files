@@ -1,0 +1,111 @@
+substitutions:
+  display_name: sonoffbasic
+
+esphome:
+  name: ${display_name}
+  platform: ESP8266
+  board: esp01_1m
+  
+wifi:
+  ssid: "Kaywinnet"
+  password: !secret wifi_password
+  fast_connect: true
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+#  ap:
+#    ssid: "Wemos_Switch Fallback Hotspot"
+#    password: "Oi136ZHGIzON"
+#
+#captive_portal:
+
+# Enable logging
+logger:
+  level: DEBUG
+
+# Enable Home Assistant API
+api:
+
+# Enable Over the Air updates
+ota:
+  safe_mode: True
+  
+  
+###############################
+# Sonoff Basic peripherals
+
+# Virtual switch GPI12  
+switch:
+  - platform: gpio
+    name: ${display_name} relay
+    pin:
+      number: 12
+      mode: output
+    id: OfficeLight_relay
+    
+  - platform: gpio
+    name: ${display_name} led"
+    pin:
+      number: 13
+      mode: output
+    id: OfficeLight_led
+    
+    
+# Physical Button on GPIO0
+binary_sensor:
+  - platform: gpio
+    pin: 
+      number: 0
+      inverted: False
+      mode: INPUT_PULLUP
+    name: ${display_name} button
+    internal: true
+    on_press:
+      - switch.toggle: OfficeLight_relay    
+      
+  # Physical Button on GPIO14  
+  - platform: gpio
+    pin: 
+      number: 14
+      inverted: False
+      mode: INPUT_PULLUP
+    name: ${display_name} Remote Button"
+    on_press:
+      then:
+      - switch.toggle: OfficeLight_relay
+    on_release:
+      then:
+      - switch.toggle: OfficeLight_relay
+
+      
+# Get the WiFi details
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: ${display_name} IP Address
+      id: OfficeLight_ip
+    ssid:
+      name: ${display_name} SSID
+    mac_address:
+      name: ${display_name} Mac Address
+      
+sensor:
+  - platform: wifi_signal
+    name: ${display_name} WiFi Signal Sensor"
+    id: OfficeLight_WiFi_level
+    update_interval: 60s
+    
+    
+status_led:
+  pin:
+    number: 13
+
+    
+    
+#  - if:
+#    condition:
+#      wifi.connected:
+#    then:
+#      switch.turn_on: OfficeLight_led
+#    else:
+#      switch.turn_off: OfficeLight_led
+  
