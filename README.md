@@ -9,6 +9,10 @@ Collection of my ESPHome Yaml files
  A button is on D6. When pressed, the relay on D5 closes
  for 500ms.
  
+### Node_mcu_1.yaml
+`NodeMCU`
+Basic setup for a NodeMCU module
+
 ### pir-one.yaml
 `Wemos D1 Mini`
 Demo of a PIR sensor on GPIO14 (D5) on a Wemos D1 Mini.
