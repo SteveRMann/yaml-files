@@ -9,6 +9,10 @@ Collection of my ESPHome Yaml files
  A button is on D6. When pressed, the relay on D5 closes
  for 500ms.
  
+### sonoff-mini.yaml
+`sonoff mini`
+Basic setup for a Sonoff Mini module
+ 
 ### sonoffbasic.yaml
 `Sonoff Basic`
 Basic setup for a Sonoff Basic with a switch on GPIO14
