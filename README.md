@@ -10,7 +10,7 @@ Collection of my ESPHome Yaml files
  for 500ms.
  
 ### sonoffbasic.yaml
-'Sonoff Basic'
+`Sonoff Basic`
 Basic setup for a Sonoff Basic with a switch on GPIO14
 
 ### temperature-1.yaml
