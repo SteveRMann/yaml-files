@@ -1,0 +1,61 @@
+esphome:
+  name: node_mcu_1
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: "Kaywinnet"
+  password: "806194edb8"
+  fast_connect: true
+
+
+
+# Enable Home Assistant API
+api:
+
+
+# Enable logging
+logger:
+  level: DEBUG
+  
+ota:
+  safe_mode: True
+  
+
+  
+# A physical switch or button should be a binary sensor if you are detecting something like grounding the pin.
+# A switch is to operate something external, like a relay attached to a gpio.  
+#
+# Virtual switch D0, GPI16  
+switch:
+  - platform: gpio
+    name: "NodeMCU Test Switch"
+    pin:
+      number: D4
+      mode: output
+      inverted: yes
+    id: led
+    
+# Physical Button on D1 (GPIO5)  
+#binary_sensor:
+#  - platform: gpio
+#    pin: 
+#      number: D1
+#      inverted: False
+#      mode: INPUT_PULLUP
+#    name: NodeMCU_Switch"
+#    internal: true
+#    on_press:
+#      - switch.toggle: led
+
+# Get the WiFi details
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: NodeMCU IP Address
+    ssid:
+      name: NodeMCU SSID
+    bssid:
+      name: NodeMCU BSSID
+    mac_address:
+      name: NodeMCU Mac Address
