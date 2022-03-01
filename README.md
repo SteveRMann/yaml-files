@@ -8,7 +8,14 @@ Collection of my ESPHome Yaml files
  This program is a prelude to the garage door opener.
  A button is on D6. When pressed, the relay on D5 closes
  for 500ms.
- 
+
+### garagedoorjeep.yaml
+'ESP8266-01'
+This is the garage door opener controller.
+
+It features the use of a 'helper' entity.
+
+
 ### Node_mcu_1.yaml
 `NodeMCU`
 Basic setup for a NodeMCU module
