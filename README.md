@@ -12,7 +12,6 @@ Collection of my ESPHome Yaml files
 ### garagedoorjeep.yaml
 'ESP8266-01'
 This is the garage door opener controller.
-
 It features the use of a 'helper' entity.
 
 
