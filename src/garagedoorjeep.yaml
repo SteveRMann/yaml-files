@@ -1,0 +1,86 @@
+# garagedoorjeep.yaml
+# 3-01-22
+# Controls the Jeep garage door relay.
+
+substitutions:
+  device_name: garagedoorjeep
+  
+esphome:
+  name: ${device_name}
+
+
+esp8266:
+  board: esp01_1m
+
+# Multiple networks with DHCP
+wifi:
+  networks:
+  - ssid: Kaywinnet
+    password: !secret wifi_password
+  - ssid: Serenity
+    password: !secret serenity_password
+  - ssid: Naboo
+    password: !secret naboo_password
+
+
+# Enable logging
+logger:
+  level: VERBOSE     # default is DEBUG
+
+
+# Enable Home Assistant API
+api:
+
+
+# Enable Over the Air updates
+ota:
+  safe_mode: True
+
+
+    
+text_sensor:
+  # Get the WiFi details
+  - platform: wifi_info
+    ip_address:
+      name: ${device_name} IP
+    ssid:
+      name: ${device_name} SSID
+    mac_address:
+      name: ${device_name} Mac
+  
+
+sensor:
+  # WiFi Signal sensor.
+  - platform: wifi_signal
+    name: ${device_name} RSSI
+    update_interval: 60s
+
+
+############### Stuff for this board ###############
+
+#Relay on the ESP relay board is on GPIO0 
+switch:
+  - platform: gpio
+    pin: 0
+    name: "${device_name} Relay"        # Becomes switch.garagedoorjeep_relay in HA
+    id: ${device_name}_rly
+
+#Button is connected here:
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: 2
+      mode:
+        input: true
+        pullup: true
+    name: "${device_name} Button"
+    on_press:
+      #Turn on the relay on D5 for a half second.
+      then:
+        - switch.turn_on: ${device_name}_rly
+        - delay: 500ms
+        - switch.turn_off: ${device_name}_rly
+    filters:
+      # Hold the button down for a period before toggling the relay
+      - delayed_off: 250ms
+
